@@ -15,15 +15,12 @@ import EditProfile from '../src/Screens/EditProfile';
 import UpdatePass from '../src/Screens/UpdatePass';
 import Chat from '../src/Screens/Chat';
 import MessagesScreen from '../src/Screens/Messages';
-import HeaderImage from '../src/Screens/HeaderImage';
 import DropdownChat from '../src/Screens/dropdownChat';
 import Attachment from '../src/Screens/Attachment';
 import Thankyou from '../src/Screens/thankyou';
 import Map from '../src/Screens/Map';
 import mainScreenSS from '../src/Screens/mainpage_selectedService';
 import Review from '../src/Screens/review';
-import ChangeAddress from '../src/Screens/ChangeAddress';
-import AddAddress from '../src/Screens/AddAddress';
 
 const Stack = createStackNavigator();
 const AuthStack =()=> {
@@ -119,16 +116,6 @@ const AuthStack =()=> {
         <Stack.Screen
         options={{headerTitleAlign:'center',}} 
         name="Review" component={Review} />
-
-        <Stack.Screen
-        options={{headerTitleAlign:'center',}} 
-        name="Change address" component={ChangeAddress} />
-
-         <Stack.Screen
-        options={{headerTitleAlign:'center',}} 
-        name="AddAddress" component={AddAddress} />
-
-        
 
       </Stack.Navigator>
     );
