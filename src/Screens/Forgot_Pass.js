@@ -20,7 +20,6 @@ const Login = ({navigation}) => {
     setFocusInput(true);
   }
 
-
   const onChangeBlur=()=>{
     setFocusInput(false);
 
@@ -50,7 +49,6 @@ const Login = ({navigation}) => {
         onChangeText={onChangeEmail}
         onFocus={onChangeFocus}
         onBlur={onChangeBlur}
-
       />
      
       <TouchableOpacity 

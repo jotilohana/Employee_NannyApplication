@@ -1,47 +1,16 @@
-import AboutUs from './aboutUs';
-import React from 'react';
-import {Text, View, ScrollView, FlatList, StyleSheet,TouchableOpacity} from 'react-native';
-import Home_swiper from './Home_swiper';
-import Home_card from './Home_card';
+import React from 'react'
+import {Text, Image, View, StyleSheet, TouchableOpacity} from 'react-native';
+import Review from './review';
 import TestimonialSection from './testimonialSection';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
 
-
-const DATA = [
-  {
-    image: require('../Assets/Background_Images.jpg'),
-    name: 'Wedding photos',
-  },
-  {
-    image: require('../Assets/Background_Images.jpg'),
-    name: 'Party photos',
-  },
-  {
-    image: require('../Assets/Background_Images.jpg'),
-    name: 'Picnic photos',
-  },
-  {
-    image: require('../Assets/Background_Images.jpg'),
-    name: 'School photos',
-  },
-  {
-    image: require('../Assets/Background_Images.jpg'),
-    name: 'Uni photos',
-  },
-];
-
-
-const HomeScreen = ({navigation}) => {
-  const ServiceHeader=()=>{
-    return(
-      <View style={{flexDirection:'row',}}>
-        <Text style={{color:'black',fontWeight:'bold',fontSize:25,margin:10}}>Services</Text>
+const HomeScreen =({navigation})=> {
+  return (
+    <View style={styles.mainView}>
+       <View style={{flexDirection:'row', marginRight:10, marginLeft:10, marginTop:10}}>
+        <Text style={{color:'black',fontWeight:'bold',fontSize:20,margin:10}}>Latest Order</Text>
         <View style={{marginLeft:'auto'}}>
         <TouchableOpacity
-          onPress={() =>navigation.navigate('Service')}
+          onPress={() =>navigation.navigate('MainService') }
           style={{
            backgroundColor: "#03204c",
            padding:5,
@@ -53,45 +22,180 @@ const HomeScreen = ({navigation}) => {
         </TouchableOpacity>
         </View>
        </View>
-    )
-  }
-  const renderItem = ({item}) => {
-    return <Home_card imageUri={item.image} name={item.name} />
-  };
+      <TouchableOpacity>
+        <View style={styles.cardView}>
+          <View style={styles.ImgView}>
+            <View style={{marginRight: 10}}>
+              <Image
+                style={styles.image}
+                source={require('../Assets/Background_Images.jpg')}
+              />
+            </View>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>In Process</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.secondView}>
+            <View
+              style={{
+                flexDirection: 'row',
+                borderBottomWidth: 2,
+                borderColor: '#F4ECF7',
+              }}>
+              <Text style={styles.Text}>Service Name</Text>
+              <Image
+                style={styles.Dots}
+                source={require('../Assets/Dots.png')}
+              />
+            </View>
+            <View
+              style={{
+                paddingBottom: 5,
+                marginTop: 15,
+                borderBottomWidth: 2,
+                borderColor: '#F4ECF7',
+              }}>
+              <View style={{flexDirection: 'row'}}>
+                <Image
+                  style={styles.TimeIcon}
+                  source={require('../Assets/Time.png')}
+                />
+                <Text style={{fontSize: 15, marginRight: 4}}>
+                  Service Time{' '}
+                </Text>
+              </View>
+              <View style={{flexDirection: 'row'}}>
+                <Text
+                  style={{
+                    fontSize: 15,
+                    fontWeight: 'bold',
+                    color: '#03204c',
+                    marginRight: 10,
+                  }}>
+                  12:00Am
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 15,
+                    fontWeight: 'bold',
+                    color: '#03204c',
+                    marginRight: 10,
+                  }}>
+                  To
+                </Text>
+                <Text
+                  style={{fontSize: 15, fontWeight: 'bold', color: '#03204c'}}>
+                  12:00Pm
+                </Text>
+              </View>
+            </View>
 
-  return (
-    <ScrollView style={styles.container}>
-      <View style={styles.swiper}>
-        <Home_swiper />
-      </View>
-      <ServiceHeader />
-      <FlatList
-        keyExtractor={item => item.name}
-        data={DATA}
-        renderItem={renderItem}
-        horizontal
-      />
-      <View>
-      <AboutUs />
-      </View>
-      <View style={styles.mainView}>
-      <Text style={styles.mainText}>Testimonial</Text>
+            <View style={{marginTop: 10}}>
+              <View style={{flexDirection: 'row'}}>
+                <Image
+                  style={styles.TimeIcon}
+                  source={require('../Assets/date.png')}
+                />
+                <Text style={{fontSize: 15, marginRight: 4}}>Service Date</Text>
+              </View>
+              <View style={{flexDirection: 'row'}}>
+                <Text
+                  style={{
+                    fontSize: 15,
+                    fontWeight: 'bold',
+                    color: '#03204c',
+                    marginRight: 10,
+                  }}>
+                  22-Nov-21
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 15,
+                    fontWeight: 'bold',
+                    color: '#03204c',
+                    marginRight: 10,
+                  }}>
+                  To
+                </Text>
+                <Text
+                  style={{fontSize: 15, fontWeight: 'bold', color: '#03204c'}}>
+                  29-Nov-21
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </TouchableOpacity>
+      <View style={styles.review}>
       <TestimonialSection />
       </View>
-    </ScrollView>
-  );
-};
+    </View>
+  )
+}
 
 const styles = StyleSheet.create({
-  container: {
+  mainView: {
     flex: 1,
   },
-  mainText:{
-      color:'black',
-      textAlign:'center',
-      fontSize:25,
-      fontWeight:'bold',
-      marginTop:20
+  cardView: {
+    backgroundColor: 'white',
+    height: 185,
+    borderRadius: 20,
+    margin: 10,
+    flexDirection: 'row',
+    padding: 10,
+    elevation: 5,
   },
-});
-export default HomeScreen;
+  ImgView: {
+    width: '40%',
+    height: 155,
+    borderRadius: 20,
+    margin: 5,
+    marginRight: 0,
+  },
+  image: {
+    height: 155,
+    borderRadius: 20,
+    width: '100%',
+  },
+  button: {
+    backgroundColor: '#03204c',
+    position: 'absolute',
+    right: 80,
+    height: 20,
+    top: 10,
+    borderRadius: 10,
+    padding: 3,
+    height: 23,
+    width: 70,
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 12,
+  },
+  //Second Portion
+  secondView: {
+    padding: 5,
+  },
+  Text: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#03204c',
+    paddingBottom: 5,
+  },
+  Dots: {
+    marginLeft: 'auto',
+    marginTop: 5,
+  },
+  TimeIcon: {
+    marginRight: 3,
+  },
+  SubText: {
+    marginRight: 10,
+  },
+  subTextheader: {
+    marginTop: 10,
+  },
+})
+export default HomeScreen

@@ -5,8 +5,7 @@ const Verify = ({navigation}) => {
   
 let textInput=useRef(null);
 const lengthInput=4;
-const [internalVal, setInternalVal]=useState("")
-
+const [internalVal, setInternalVal]=useState()
 
 const onChangeText=(val)=>{
   setInternalVal(val);
@@ -39,12 +38,10 @@ useEffect(()=>{
         onChangeText={onChangeText}
         style={styles.input}
         ref={(input)=>textInput=input}
-        placeholder="Enter Code"
         keyboardType={'numeric'}
         placeholderTextColor="black"
         value={internalVal}
         maxLength={lengthInput}
-        returnKeyType="done"
       />
     <View style={styles.containerInput}>
      { Array(lengthInput).fill().map((data,index)=>
@@ -53,7 +50,7 @@ useEffect(()=>{
      key={index}
      style={styles.cellView}>
      <Text style={styles.cellText} 
-     onPress={()=>textInput.focus()}>
+     onPress={()=>textInput.focus(true)}>
         {internalVal && internalVal.length > 0 ? internalVal[index] : ""}
      </Text>
      </View>

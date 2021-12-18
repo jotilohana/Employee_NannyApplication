@@ -39,22 +39,7 @@ const Login = ({navigation}) => {
       >
         <Text style={styles.buttonText}>Log In</Text>
       </TouchableOpacity>
-      <View style={styles.ORMainView}>
-      <View style={styles.ORFirstView} />
-      <View>
-    <Text style={styles.ORText}>OR</Text>
-    </View>
-    <View style={styles.ORSecondView} />
-    </View>
-    <View style={styles.EndView}>
-       <Text style={styles.Endtext}> Don't have an account? </Text>
-       <TouchableOpacity 
-        onPress={() => navigation.navigate('SignUp')}
-      >
-        <Text style={styles.Endtext}> Register</Text>
-      </TouchableOpacity>
-
-    </View>
+   
     </View>
     </View>
     </ScrollView>
@@ -75,7 +60,8 @@ const styles = StyleSheet.create({
       width:200,
       height:100,
       alignSelf:'center',
-      marginTop:'7%'
+      marginTop:'7%',
+      marginBottom:'20%'
   },
   line:{
       width:200,
@@ -92,7 +78,7 @@ const styles = StyleSheet.create({
   BottomView:{
       bottom:'50%',
       backgroundColor:'white',
-      height:'70%',
+      height:'65%',
       width:'80%',
       alignSelf:'center',
       borderRadius:25,
@@ -100,9 +86,10 @@ const styles = StyleSheet.create({
       color:'black',
       marginBottom:50,
       overflow: 'hidden',
-  },
+      paddingTop:50
+    },
   LoginText:{
-      textAlign:'center',
+    textAlign:'center',
     color:'black',
     fontWeight:'bold',
     fontSize:18
@@ -126,7 +113,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#03204c',
     borderRadius:20,
     padding:'5%',
-    marginTop:20,
+    marginTop:40,
     width:'80%',
     alignSelf:'center',
   },
@@ -134,45 +121,6 @@ const styles = StyleSheet.create({
     textAlign:'center',
     color:'white',
     fontWeight:'bold'
-  },
-  // ORText
-
-  ORMainView:{
-      flexDirection: 'row',
-      alignItems: 'center',
-      margin:'14%'
-  },
-  ORFirstView:{
-        flex: 1, 
-        height: 1,
-        backgroundColor: '#E0E0E0'
-  },
-  ORSecondView:{
-          flex: 1,
-          height: 1,
-          backgroundColor: '#E0E0E0'
-  },
-  ORText:{
-    color:'black',
-    backgroundColor:'#E0E0E0',
-    paddingLeft:5,
-    paddingRight:5,
-    marginLeft:5,
-    marginRight:5,
-    borderRadius:10,
-  },
-  // End portion
-  EndView:{
-    marginTop:'4%',
-    flex:1,
-    flexDirection:'row',
-  },
-  Endtext:{
-    color:'black',
-    textAlign:'center',
-    fontWeight:'bold',
-  
-  },
-  
+  },  
 });
 export default Login;
