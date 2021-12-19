@@ -21,6 +21,7 @@ import Thankyou from '../src/Screens/thankyou';
 import Map from '../src/Screens/Map';
 import mainScreenSS from '../src/Screens/mainpage_selectedService';
 import Review from '../src/Screens/review';
+import HeaderImage from '../src/Screens/HeaderImage';
 
 const Stack = createStackNavigator();
 const AuthStack =()=> {
@@ -96,6 +97,10 @@ const AuthStack =()=> {
         <Stack.Screen 
         options={{headerTitleAlign:'center'}} 
           name="Chat" component={MessagesScreen} />
+
+        <Stack.Screen 
+        options={{headerTitleAlign:'center'}} 
+          name="HeaderImage" component={HeaderImage} />
 
         <Stack.Screen 
         options={{headerTitleAlign:'center'}} 
