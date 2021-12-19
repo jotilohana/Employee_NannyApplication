@@ -22,6 +22,7 @@ import Map from '../src/Screens/Map';
 import mainScreenSS from '../src/Screens/mainpage_selectedService';
 import Review from '../src/Screens/review';
 import HeaderImage from '../src/Screens/HeaderImage';
+import AlertScreen from '../src/Screens/Alert';
 
 const Stack = createStackNavigator();
 const AuthStack =()=> {
@@ -121,6 +122,10 @@ const AuthStack =()=> {
         <Stack.Screen
         options={{headerTitleAlign:'center',}} 
         name="Review" component={Review} />
+
+         <Stack.Screen
+        options={{headerShown: false,}} 
+        name="Alert" component={AlertScreen} />
 
       </Stack.Navigator>
     );

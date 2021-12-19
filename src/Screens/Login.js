@@ -1,5 +1,7 @@
 import React from 'react';
 import {Text,Image, TouchableOpacity,ScrollView, View, StyleSheet, TextInput, Button} from 'react-native';
+
+
 const Login = ({navigation}) => {
   return (
     <View style={{backgroundColor:'#FAF6F5', flex:1}}>
@@ -34,7 +36,7 @@ const Login = ({navigation}) => {
         <Text style={{color:'black'}}>Forgot Password?</Text>
       </TouchableOpacity></Text>
       <TouchableOpacity 
-        onPress={() => navigation.navigate('Home')}
+        onPress={() => navigation.navigate('Alert')}
         style={styles.button}
       >
         <Text style={styles.buttonText}>Log In</Text>
