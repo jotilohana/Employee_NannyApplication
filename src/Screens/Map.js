@@ -32,7 +32,6 @@ const Map = () => {
                   console.log(addressComponent);
                     })
                     .catch(error => console.warn(error));
-            // },
     })
 
     .catch((err) => {
@@ -64,7 +63,6 @@ const Map = () => {
             </View>
         );
     }
-    //create our styling code:
 const styles = StyleSheet.create({
     map: {
         ...StyleSheet.absoluteFillObject,

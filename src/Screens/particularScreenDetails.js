@@ -51,10 +51,10 @@ const ParticularScreenDetails=({navigation})=>{
                     </View>
                 </View>
              </View>
-             <View style={{flexDirection:'row'}}>
-                <View style={{backgroundColor:'#03204c', borderRadius:5, height:340,width:"80%",marginLeft:"auto", paddingLeft:20, paddingTop:20}}>
-                    <Text style={{color:'white',marginBottom:5, fontSize:20, fontWeight:'bold'}}>Employee Name</Text>
-                    <View style={{borderRadius:5,margin:5, marginRight:20, padding:5}}>
+             <View style={{flexDirection:'row', height:'72%'}}>
+                <View style={{backgroundColor:'#03204c', borderRadius:5, height:'72%',width:"80%",marginLeft:"auto", paddingLeft:20, paddingTop:20}}>
+                    <Text style={{color:'white',marginBottom:5, fontSize:20, fontWeight:'bold'}}>Customer Name</Text>
+                    <View style={{borderRadius:5,margin:5, marginTop:0, marginRight:20, padding:5}}>
                         <View style={styles.BookingView}>
                         <Text style={styles.ViewText}>Service Name</Text>
                          <View style={{flexDirection:'row'}}>
@@ -97,7 +97,7 @@ const ParticularScreenDetails=({navigation})=>{
                         <TouchableOpacity
                             style={styles.Reviewbutton}
                         >
-                        <Text style={styles.reviewText}>Review</Text>
+                        <Text style={styles.reviewText}>Completed</Text>
                         </TouchableOpacity>
 
                         </View>

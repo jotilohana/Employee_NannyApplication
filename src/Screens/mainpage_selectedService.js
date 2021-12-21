@@ -263,7 +263,6 @@ const styles= StyleSheet.create({
         borderBottomColor:'grey',
         marginLeft:40,
         marginRight:40,
-
     },
     button:{
         padding:8,

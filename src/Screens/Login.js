@@ -1,8 +1,11 @@
 import React from 'react';
-import {Text,Image, TouchableOpacity,ScrollView, View, StyleSheet, TextInput, Button} from 'react-native';
+import {Text, Image, Alert, TouchableOpacity,ScrollView, View, StyleSheet, TextInput} from 'react-native';
 
 
 const Login = ({navigation}) => {
+  const AlertScreen =()=>{
+    Alert.alert("Hey there..!")
+  }
   return (
     <View style={{backgroundColor:'#FAF6F5', flex:1}}>
     <ScrollView showsVerticalScrollIndicator={false} >
@@ -36,12 +39,11 @@ const Login = ({navigation}) => {
         <Text style={{color:'black'}}>Forgot Password?</Text>
       </TouchableOpacity></Text>
       <TouchableOpacity 
-        onPress={() => navigation.navigate('Alert')}
+        onPress={() => navigation.navigate('Home')}
         style={styles.button}
       >
         <Text style={styles.buttonText}>Log In</Text>
       </TouchableOpacity>
-   
     </View>
     </View>
     </ScrollView>
