@@ -12,7 +12,7 @@ const HeaderImage=()=>{
             style={styles.profilePicture}
             source={require('../Assets/profile2.jpg')}
             />
-            <Text style={styles.text}>{route.params.userName}</Text>
+            <Text style={styles.text}>Hello</Text>
         </View>
     )
 };

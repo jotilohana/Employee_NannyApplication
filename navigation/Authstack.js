@@ -15,7 +15,6 @@ import EditProfile from '../src/Screens/EditProfile';
 import UpdatePass from '../src/Screens/UpdatePass';
 import Chat from '../src/Screens/Chat';
 import MessagesScreen from '../src/Screens/Messages';
-import DropdownChat from '../src/Screens/dropdownChat';
 import Attachment from '../src/Screens/Attachment';
 import Thankyou from '../src/Screens/thankyou';
 import Map from '../src/Screens/Map';
@@ -125,7 +124,6 @@ const HomeStackScreen =({navigation, route})=> {
       <HomeStack.Screen
         options={({route}) => ({
           title: <HeaderImage />,
-          headerRight: () => <DropdownChat />,
           tabBarStyle: {display: 'none'},
         })}
         name='ChatScreen'
@@ -136,12 +134,6 @@ const HomeStackScreen =({navigation, route})=> {
         options={{headerTitleAlign: 'center', tabBarStyle: {display: 'none'}}}
         name='Chat'
         component={MessagesScreen}
-      />
-
-      <HomeStack.Screen
-        options={{headerTitleAlign: 'center'}}
-        name='DropdownChat'
-        component={DropdownChat}
       />
 
       <HomeStack.Screen
@@ -180,15 +172,9 @@ const ChatStackScreen = () => {
         options={{
           tabBarStyle: {display: 'none'},
           title: <HeaderImage />,
-          headerRight: () => <DropdownChat />,
         }}
         name='ChatScreen'
         component={Chat}
-      />
-      <ChatStack.Screen
-        options={{headerShown: 'false'}}
-        name='DropDown'
-        component={DropdownChat}
       />
       <ChatStack.Screen
         options={{headerShown: 'false'}}
