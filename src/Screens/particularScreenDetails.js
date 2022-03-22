@@ -1,15 +1,47 @@
 import React from 'react';
 import VerticalIndicator from './VerticalIndicator';
-import {View, StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  Image,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
+import '../../assets/i18n/i18n';
+import {useTranslation} from 'react-i18next';
 
 const ParticularScreenDetails = ({navigation}) => {
+  const {t, i18n} = useTranslation();
+
   return (
-    <View style={{margin: 2, flex: 1, backgroundColor: '#fffff'}}>
-      <View style={{flexDirection: 'row', height: 300}}>
-        <View style={{height: 280, margin: 20}}>
+    <ScrollView
+      style={{
+        flex: 1,
+        backgroundColor: '#fffff',
+        flexDirection: 'column',
+        overflow: 'hidden',
+      }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          height: 300,
+          marginLeft: 10,
+          marginRight: 10,
+          marginTop: '5%',
+        }}>
+        <View
+          style={{
+            height: 280,
+            margin: 20,
+            marginTop: 0,
+            marginRight: 5,
+            marginLeft: 10,
+            width: '50%',
+          }}>
           <VerticalIndicator />
         </View>
-        <View style={{height: 300}}>
+        <View style={{height: 300, marginRight: 30}}>
           <View
             style={{
               backgroundColor: '#03204c',
@@ -25,9 +57,9 @@ const ParticularScreenDetails = ({navigation}) => {
             />
             <View
               style={{flexDirection: 'row', alignSelf: 'center', margin: 10}}>
-              <Text style={{margin: 5}}>Track</Text>
-              <Text style={{margin: 5}}>Call</Text>
-              <Text style={{margin: 5}}>Msg</Text>
+              <Text style={{margin: 5}}>{t('Track')}</Text>
+              <Text style={{margin: 5}}>{t('Call')}</Text>
+              <Text style={{margin: 5}}>{t('Msg')}</Text>
             </View>
             <View
               style={{
@@ -46,8 +78,9 @@ const ParticularScreenDetails = ({navigation}) => {
                 />
               </TouchableOpacity>
               <TouchableOpacity
-              // onPress={()=>{navigation.navigate("Map")}}
-              >
+                onPress={() => {
+                  navigation.navigate('Map');
+                }}>
                 <Image
                   style={{margin: 3, marginTop: 0}}
                   source={require('../Assets/Call.png')}
@@ -71,16 +104,17 @@ const ParticularScreenDetails = ({navigation}) => {
           style={{
             backgroundColor: '#03204c',
             borderRadius: 5,
-            height: '72%',
+            height: '60%',
             width: '80%',
             marginLeft: 'auto',
             paddingLeft: 20,
             paddingTop: 20,
+            marginRight: 10,
           }}>
           <Text
             style={{
               color: 'white',
-              marginBottom: 5,
+              marginBottom: 0,
               fontSize: 20,
               fontWeight: 'bold',
             }}>
@@ -88,14 +122,13 @@ const ParticularScreenDetails = ({navigation}) => {
           </Text>
           <View
             style={{
-              borderRadius: 5,
               margin: 5,
               marginTop: 0,
               marginRight: 20,
               padding: 5,
             }}>
             <View style={styles.BookingView}>
-              <Text style={styles.ViewText}>Service Name</Text>
+              <Text style={styles.ViewText}>{t('Service Name')}</Text>
               <View style={{flexDirection: 'row'}}>
                 <Text
                   style={{
@@ -109,7 +142,7 @@ const ParticularScreenDetails = ({navigation}) => {
               </View>
             </View>
             <View style={styles.BookingView}>
-              <Text style={styles.ViewText}>Working Time</Text>
+              <Text style={styles.ViewText}>{t('Work Time')}</Text>
               <View style={{flexDirection: 'row'}}>
                 <Text
                   style={{
@@ -127,7 +160,7 @@ const ParticularScreenDetails = ({navigation}) => {
                     color: 'white',
                     marginRight: 10,
                   }}>
-                  To
+                  {t('To')}
                 </Text>
                 <Text
                   style={{fontSize: 14, fontWeight: 'bold', color: 'white'}}>
@@ -136,7 +169,7 @@ const ParticularScreenDetails = ({navigation}) => {
               </View>
             </View>
             <View style={styles.BookingView}>
-              <Text style={styles.ViewText}>Working Days</Text>
+              <Text style={styles.ViewText}>{t('Working Days')}</Text>
               <View style={{flexDirection: 'row'}}>
                 <Text
                   style={{
@@ -154,7 +187,7 @@ const ParticularScreenDetails = ({navigation}) => {
                     color: 'white',
                     marginRight: 10,
                   }}>
-                  To
+                  {t('To')}
                 </Text>
                 <Text
                   style={{fontSize: 14, fontWeight: 'bold', color: 'white'}}>
@@ -164,7 +197,7 @@ const ParticularScreenDetails = ({navigation}) => {
             </View>
             <View style={styles.BookingView}>
               <View style={{flexDirection: 'row'}}>
-                <Text style={styles.ViewText}>Address</Text>
+                <Text style={styles.ViewText}>{t('Address')}</Text>
                 <TouchableOpacity style={{marginTop: 3, marginLeft: 5}}>
                   <Image source={require('../Assets/Location.png')} />
                 </TouchableOpacity>
@@ -182,8 +215,10 @@ const ParticularScreenDetails = ({navigation}) => {
               </View>
             </View>
           </View>
-          <TouchableOpacity style={styles.Reviewbutton}>
-            <Text style={styles.reviewText}>Completed</Text>
+          <TouchableOpacity
+            style={styles.Reviewbutton}
+            onPress={() => navigation.navigate('Review')}>
+            <Text style={styles.reviewText}>{t('Review')}</Text>
           </TouchableOpacity>
         </View>
         <Image
@@ -191,7 +226,7 @@ const ParticularScreenDetails = ({navigation}) => {
           source={require('../Assets/profile2.jpg')}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -209,6 +244,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 20,
     borderRadius: 10,
+    marginLeft: 5,
   },
   locationIcon: {
     marginTop: 4,
@@ -249,6 +285,7 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 20,
     width: 230,
+    marginBottom: 30,
   },
   reviewText: {
     fontWeight: 'bold',

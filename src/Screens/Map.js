@@ -31,8 +31,7 @@ const Map = () => {
           console.log(addressComponent);
         })
         .catch(error => console.warn(error));
-    })
-    .catch(err => {
+    }).catch(err => {
       console.log(err);
     });
   }, []);

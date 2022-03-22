@@ -1,36 +1,20 @@
 {
     "translation": {
-      "Skip":"Skip",
-      "Done":"Done",
       "Services":"Services",
       "View All":"View All",
-      "About Us":"About Us",
-      "Book Service":"Book Service",
-      "Fill the field":"Fill in all the fields of the form to go to the next step",
-      "First Step":"First Step",
-      "Second Step":"Second Step",
-      "Third Step":"Third Step",
-      "Service Id":"Service Id",
-      "First Name":"First Name",
-      "Last name":"Last Name",
-      "Gender":"Gender",
-      "Home":"Home",
-      "Change":"Change",
-      "Town":"Town",
-      "Email":"E-mail",
-      "Telephone":"Telephone",
+
       "Working days":"Working days",
-      "Booking Note":"Booking Note",
-      "Next":"Next",
-      "Previous":"Previous",
-      "Submit":"Submit",
+      "Customer Name":"Customer Name",
+
+      
       "Thank you":"Thank you",
-      "Response":"Response",
+      
       "View Orders":"View Orders",
       "Service Time":"Service Time",
       "Service Date":"Service Date",
       "Current":"Current",
       "Past":"Past",
+
       "Track":"Track",
       "Call":"Call",
       "Msg":"Msg",
@@ -39,16 +23,19 @@
       "To":"To",
       "Address":"Address",
       "Review":"Review",
+
       "Service Name":"Service Name",
       "Cart":"Cart",
       "Delivery address":"Delivery address",
       "Order Summary":"Order Summary",
       "Payment method":"Payment method",
+
       "Live CS":"Live chat support",
       "Image":"Image",
       "Video":"Video",
       "Document":"Document",
       "message":"Message",
+
       "Login account":"Login account",
       "Enter username or email":"Enter Username or Email",
       "Enter Password":"Enter Password",
