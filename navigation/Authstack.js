@@ -1,4 +1,4 @@
-import  React from 'react';
+import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../src/Screens/HomeScreen';
 import Login from '../src/Screens/Login';
@@ -21,103 +21,102 @@ import Map from '../src/Screens/Map';
 import mainScreenSS from '../src/Screens/mainpage_selectedService';
 import Review from '../src/Screens/review';
 import HeaderImage from '../src/Screens/HeaderImage';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import {createDrawerNavigator} from '@react-navigation/drawer'
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 import DrawerContent from '../src/components/DrawerContent';
 
-
 const HomeStack = createStackNavigator();
-const HomeStackScreen =({navigation, route})=> {
-  const tabHiddenRoutes = ["Chat","ChatScreen", "Login"];
+const HomeStackScreen = ({navigation, route}) => {
+  const tabHiddenRoutes = ['Login', 'Chat', 'ChatScreen', 'Map'];
 
-  if(tabHiddenRoutes.includes(getFocusedRouteNameFromRoute(route))){
-    navigation.setOptions({tabBarStyle: {display: 'none'},}); } 
-   else {
-   navigation.setOptions({tabBarStyle: {display: 'flex'},});
+  if (tabHiddenRoutes.includes(getFocusedRouteNameFromRoute(route))) {
+    navigation.setOptions({tabBarStyle: {display: 'none'}});
+  } else {
+    navigation.setOptions({tabBarStyle: {display: 'flex'}});
   }
-    return(
-      <HomeStack.Navigator>
+  return (
+    <HomeStack.Navigator>
       <HomeStack.Screen
         options={{headerTitleAlign: 'center'}}
-        name='Login'
+        name="Login"
         component={Login}
-      />      
+      />
       <HomeStack.Screen
         options={{headerTitleAlign: 'center'}}
-        name='Home'
+        name="Home"
         component={HomeScreen}
       />
       <HomeStack.Screen
         options={{headerTitleAlign: 'center'}}
-        name='Forgot Password'
+        name="Forgot Password"
         component={ForgotPass}
       />
 
       <HomeStack.Screen
         options={{headerTitleAlign: 'center'}}
-        name='Verify'
+        name="Verify"
         component={Verify}
       />
 
       <HomeStack.Screen
         options={{headerTitleAlign: 'center'}}
-        name='Change Password'
+        name="Change Password"
         component={ChangePass}
       />
 
       <HomeStack.Screen
         options={{headerTitleAlign: 'center'}}
-        name='Service'
+        name="Service"
         component={Service}
       />
 
       <HomeStack.Screen
         options={{headerTitleAlign: 'center'}}
-        name='TestimonialSection'
+        name="TestimonialSection"
         component={TestimonialSection}
       />
 
       <HomeStack.Screen
         options={{headerTitleAlign: 'center'}}
-        name='Service Details'
+        name="Service Details"
         component={ServiceDetails}
       />
 
       <HomeStack.Screen
         options={{headerTitleAlign: 'center'}}
-        name='DropDown'
+        name="DropDown"
         component={DropDown}
       />
 
       <HomeStack.Screen
         options={{headerTitleAlign: 'center'}}
-        name='MainService'
+        name="MainService"
         component={mainScreenSS}
       />
 
       <HomeStack.Screen
         options={{headerTitleAlign: 'center'}}
-        name='Details'
+        name="Details"
         component={Details}
       />
 
       <HomeStack.Screen
         options={{headerTitleAlign: 'center'}}
-        name='Profile'
+        name="Profile"
         component={Profile}
       />
 
       <HomeStack.Screen
         options={{headerTitleAlign: 'center'}}
-        name='Edit Profile'
+        name="Edit Profile"
         component={EditProfile}
       />
 
       <HomeStack.Screen
         options={{headerTitleAlign: 'center'}}
-        name='Update Password'
+        name="Update Password"
         component={UpdatePass}
       />
 
@@ -126,94 +125,91 @@ const HomeStackScreen =({navigation, route})=> {
           title: <HeaderImage />,
           tabBarStyle: {display: 'none'},
         })}
-        name='ChatScreen'
+        name="ChatScreen"
         component={Chat}
       />
 
       <HomeStack.Screen
         options={{headerTitleAlign: 'center', tabBarStyle: {display: 'none'}}}
-        name='Chat'
+        name="Chat"
         component={MessagesScreen}
       />
 
       <HomeStack.Screen
         options={{headerTitleAlign: 'center'}}
-        name='Attachment'
+        name="Attachment"
         component={Attachment}
       />
 
       <HomeStack.Screen
         options={{headerTitleAlign: 'center'}}
-        name='Thankyou'
+        name="Thankyou"
         component={Thankyou}
       />
 
       <HomeStack.Screen
         options={{headerTitleAlign: 'center'}}
-        name='Map'
+        name="Map"
         component={Map}
       />
 
       <HomeStack.Screen
         options={{headerTitleAlign: 'center'}}
-        name='Review'
+        name="Review"
         component={Review}
       />
     </HomeStack.Navigator>
-    );
-  };
+  );
+};
 
-const ChatStack = createStackNavigator()
+const ChatStack = createStackNavigator();
 const ChatStackScreen = () => {
   return (
     <ChatStack.Navigator>
-      <ChatStack.Screen name='Chat' component={MessagesScreen} />
+      <ChatStack.Screen name="Chat" component={MessagesScreen} />
       <ChatStack.Screen
         options={{
           tabBarStyle: {display: 'none'},
           title: <HeaderImage />,
         }}
-        name='ChatScreen'
+        name="ChatScreen"
         component={Chat}
       />
       <ChatStack.Screen
         options={{headerShown: 'false'}}
-        name='HeaderImage'
+        name="HeaderImage"
         component={HeaderImage}
       />
     </ChatStack.Navigator>
-  )
-}
+  );
+};
 
-
-const Tabs = createBottomTabNavigator()
+const Tabs = createBottomTabNavigator();
 const TabsScreen = () => {
   return (
     <Tabs.Navigator
-    barStyle={{backgroundColor: '#0047AB'}}
-    tabBarOptions={{
-      activeTintColor: '#03204c',
-      inactiveTintColor: 'grey',
-    }}
-    screenOptions={{
+      barStyle={{backgroundColor: '#0047AB'}}
+      tabBarOptions={{
+        activeTintColor: '#03204c',
+        inactiveTintColor: 'grey',
+      }}
+      screenOptions={{
         tabBarStyle: {height: 40},
       }}>
       <Tabs.Screen
-        name='Home'
+        name="Home"
         component={HomeStackScreen}
         options={{
           headerShown: false,
           tabBarLabel: 'Home',
-        tabBarIcon: ({ home,color, size }) => {
-        const icon=home?"Login":"home";
-        return (
-        <Icon name={icon} color={color} size={size} />
-      )
-      },
+          tabBarIcon: ({home, color, size}) => {
+            const icon = home ? 'Login' : 'home';
+            return <Icon name={icon} color={color} size={size} />;
+          },
         }}
       />
       <Tabs.Screen
-        name='Chat'
+        name="Chat"
         component={ChatStackScreen}
         options={{
           tabBarStyle: {display: 'none'},
@@ -221,74 +217,73 @@ const TabsScreen = () => {
           tabBarColor: '#00A36C',
           tabBarLabel: 'Chat',
           tabBarIcon: ({color}) => (
-            <Icon name='chatbubbles' color={color} size={24} />
+            <Icon name="chatbubbles" color={color} size={24} />
           ),
         }}
       />
       <Tabs.Screen
-        name='Jobs'
+        name="Jobs"
         component={mainScreenSS}
         options={{
           headerShown: false,
           tabBarColor: '#00A36C',
           tabBarLabel: 'Jobs',
           tabBarIcon: ({color}) => (
-            <Icon name='add-circle' color={color} size={24} />
+            <Icon name="add-circle" color={color} size={24} />
           ),
         }}
       />
       <Tabs.Screen
-        name='Details'
+        name="Details"
         component={Details}
         options={{
           headerShown: false,
           tabBarColor: '#00A36C',
           tabBarLabel: 'Account',
           tabBarIcon: ({color}) => (
-            <Icon name='people' color={color} size={24} />
+            <Icon name="people" color={color} size={24} />
           ),
         }}
       />
     </Tabs.Navigator>
-  )
-}
+  );
+};
 
-const Drawer = createDrawerNavigator()
+const Drawer = createDrawerNavigator();
 const AuthStack = () => (
-  <Drawer.Navigator initialRouteName='Home'
-  screenOptions={{
-    // drawerActiveBackgroundColor:'#03204c',
-    headerShown:false
-  }}
-  drawerContent={props => <DrawerContent {...props} />}
-  >
+  <Drawer.Navigator
+    initialRouteName="Home"
+    screenOptions={{
+      // drawerActiveBackgroundColor:'#03204c',
+      headerShown: false,
+    }}
+    drawerContent={props => <DrawerContent {...props} />}>
     <Drawer.Screen
       options={{headerShown: false}}
-      name='Home'
+      name="Home"
       component={TabsScreen}
     />
     <Drawer.Screen
       options={{headerShown: false}}
-      name='Account'
+      name="Account"
       component={TabsScreen}
     />
     <Drawer.Screen
       options={{headerShown: false}}
-      name='Jobs'
+      name="Jobs"
       component={TabsScreen}
     />
     <Drawer.Screen
       options={{headerShown: false}}
-      name='Chats'
+      name="Chats"
       component={TabsScreen}
     />
     <Drawer.Screen
       options={{headerShown: false}}
-      name='Logout'
+      name="Logout"
       component={TabsScreen}
     />
   </Drawer.Navigator>
-)
-
+);
 
 export default AuthStack;
