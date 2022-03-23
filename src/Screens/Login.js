@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   Image,
@@ -9,43 +9,89 @@ import {
   StyleSheet,
   TextInput,
 } from 'react-native';
+import SyncStorage from 'sync-storage';
+import axios from 'axios';
+import baseURL from '../common/BaseUrl';
 
-const Login = ({navigation}) => {
+
+const Login = ({ navigation }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const onPressLogin = () => {
+
+
+    const data = JSON.stringify({
+      "email": email,
+      "password": password
+    });
+
+    const config = {
+      method: 'post',
+      url: baseURL + '/auth/login',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: data
+    };
+
+    axios(config)
+      .then(function (response) {
+        // console.log(JSON.stringify(response.data));
+        if (response.data.success == true) {
+          SyncStorage.set('id', response.data.token);
+          console.log(response.token)
+
+          navigation.navigate('Home')
+        } else {
+          alert(response.data.message);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+
+  }
+
   const AlertScreen = () => {
     Alert.alert('Hey there..!');
   };
   return (
-    <View style={{backgroundColor: '#FAF6F5', flex: 1}}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{height: '100%', overflow: 'hidden'}}>
-          <View style={styles.TopView}>
-            <Image style={styles.LOGO} source={require('../Assets/LOGO.jpg')} />
+    <View style={ { backgroundColor: '#FAF6F5', flex: 1 } }>
+      <ScrollView showsVerticalScrollIndicator={ false }>
+        <View style={ { height: '100%', overflow: 'hidden' } }>
+          <View style={ styles.TopView }>
+            <Image style={ styles.LOGO } source={ require('../Assets/LOGO.jpg') } />
           </View>
-          <View style={styles.BottomView}>
-            <Text style={styles.LoginText}>Login Account</Text>
+          <View style={ styles.BottomView }>
+            <Text style={ styles.LoginText }>Login Account</Text>
             <TextInput
-              style={styles.input}
+              style={ styles.input }
               placeholder="User Name or E-mail"
-              keyboardType={'email-address'}
+              keyboardType={ 'email-address' }
               placeholderTextColor="black"
+              onChange={ (e) => setEmail(e) }
             />
             <TextInput
-              secureTextEntry={true}
-              style={styles.input}
+              secureTextEntry={ true }
+              style={ styles.input }
               placeholder="Password"
-              keyboardType={'password'}
+              keyboardType={ 'password' }
               placeholderTextColor="black"
+              onChange={ (e) => setPassword(e) }
+
             />
-            <Text style={styles.forgotPass}>
+            <Text style={ styles.forgotPass }>
               <TouchableOpacity
-                onPress={() => navigation.navigate('Forgot Password')}>
-                <Text style={{color: 'black'}}>Forgot Password?</Text>
+                onPress={ () => navigation.navigate('Forgot Password') }>
+                <Text style={ { color: 'black' } }>Forgot Password?</Text>
               </TouchableOpacity>
             </Text>
             <TouchableOpacity
-              onPress={() => navigation.navigate('Home')}
-              style={styles.button}>
-              <Text style={styles.buttonText}>Log In</Text>
+              onPress={ () => navigation.navigate('Home') }
+              style={ styles.button }>
+              <Text style={ styles.buttonText }>Log In</Text>
             </TouchableOpacity>
           </View>
         </View>
