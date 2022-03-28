@@ -65,6 +65,7 @@
       "Didn't receive a code?":"Vous n'avez pas reçu de code ?",
       "Request Again":"Demander à nouveau",
       "Current Password":"Mot de passe actuel",
-      "Mettre à jour le mot de passe":"Update Password"
+      "Update Password":"Mettre à jour le mot de passe",
+      "Latest Order":"Dernière commande"
     }
 }

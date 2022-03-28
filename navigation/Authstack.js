@@ -110,7 +110,7 @@ const HomeStackScreen = ({navigation, route}) => {
 
       <HomeStack.Screen
         options={{headerTitleAlign: 'center'}}
-        name="Edit Profile"
+        name="Edit_Profile"
         component={EditProfile}
       />
 
@@ -184,6 +184,20 @@ const ChatStackScreen = () => {
   );
 };
 
+const ProfileScreen = createStackNavigator();
+const ProfileStack = () => {
+  return (
+    <ProfileScreen.Navigator>
+      <ProfileScreen.Screen name="Profile" component={Profile} />
+      <ProfileScreen.Screen
+        options={{headerShown: 'false'}}
+        name="Edit Profile"
+        component={EditProfile}
+      />
+    </ProfileScreen.Navigator>
+  );
+};
+
 const Tabs = createBottomTabNavigator();
 const TabsScreen = () => {
   return (
@@ -234,8 +248,8 @@ const TabsScreen = () => {
         }}
       />
       <Tabs.Screen
-        name="Details"
-        component={Details}
+        name="Profile"
+        component={ProfileStack}
         options={{
           headerShown: false,
           tabBarColor: '#00A36C',

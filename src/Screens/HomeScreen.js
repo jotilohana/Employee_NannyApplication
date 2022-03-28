@@ -1,27 +1,45 @@
-import React from 'react'
+import React from 'react';
 import {Text, Image, View, StyleSheet, TouchableOpacity} from 'react-native';
 import Review from './review';
 import TestimonialSection from './testimonialSection';
+import '../../assets/i18n/i18n';
+import {useTranslation} from 'react-i18next';
 
-const HomeScreen =({navigation})=> {
+const HomeScreen = ({navigation}) => {
+  //LANGUAGE CHANGE
+  const {t, i18n} = useTranslation();
+
   return (
     <View style={styles.mainView}>
-       <View style={{flexDirection:'row', marginRight:10, marginLeft:10, marginTop:10}}>
-        <Text style={{color:'black',fontWeight:'bold',fontSize:20,margin:10}}>Latest Order</Text>
-        <View style={{marginLeft:'auto'}}>
-        <TouchableOpacity
-          onPress={() =>navigation.navigate('MainService') }
+      <View
+        style={{
+          flexDirection: 'row',
+          marginRight: 10,
+          marginLeft: 10,
+          marginTop: 10,
+        }}>
+        <Text
           style={{
-           backgroundColor: "#03204c",
-           padding:5,
-           borderRadius:25,
-           margin:10,
-            }}
-          >
-          <Text style={{color:'white'}}>View All</Text>
-        </TouchableOpacity>
+            color: 'black',
+            fontWeight: 'bold',
+            fontSize: 20,
+            margin: 10,
+          }}>
+          {t('Latest Order')}
+        </Text>
+        <View style={{marginLeft: 'auto'}}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('MainService')}
+            style={{
+              backgroundColor: '#03204c',
+              padding: 5,
+              borderRadius: 25,
+              margin: 10,
+            }}>
+            <Text style={{color: 'white'}}>{t('View All')}</Text>
+          </TouchableOpacity>
         </View>
-       </View>
+      </View>
       <TouchableOpacity>
         <View style={styles.cardView}>
           <View style={styles.ImgView}>
@@ -61,7 +79,7 @@ const HomeScreen =({navigation})=> {
                   source={require('../Assets/Time.png')}
                 />
                 <Text style={{fontSize: 15, marginRight: 4}}>
-                  Service Time{' '}
+                  {t('Service Time')}
                 </Text>
               </View>
               <View style={{flexDirection: 'row'}}>
@@ -81,7 +99,7 @@ const HomeScreen =({navigation})=> {
                     color: '#03204c',
                     marginRight: 10,
                   }}>
-                  To
+                  {t('To')}
                 </Text>
                 <Text
                   style={{fontSize: 15, fontWeight: 'bold', color: '#03204c'}}>
@@ -96,7 +114,10 @@ const HomeScreen =({navigation})=> {
                   style={styles.TimeIcon}
                   source={require('../Assets/date.png')}
                 />
-                <Text style={{fontSize: 15, marginRight: 4}}>Service Date</Text>
+                <Text style={{fontSize: 15, marginRight: 4}}>
+                  {' '}
+                  {t('Service Date')}
+                </Text>
               </View>
               <View style={{flexDirection: 'row'}}>
                 <Text
@@ -115,7 +136,7 @@ const HomeScreen =({navigation})=> {
                     color: '#03204c',
                     marginRight: 10,
                   }}>
-                  To
+                  {t('To')}
                 </Text>
                 <Text
                   style={{fontSize: 15, fontWeight: 'bold', color: '#03204c'}}>
@@ -127,11 +148,11 @@ const HomeScreen =({navigation})=> {
         </View>
       </TouchableOpacity>
       <View style={styles.review}>
-      <TestimonialSection />
+        <TestimonialSection />
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   mainView: {
@@ -162,7 +183,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#03204c',
     position: 'absolute',
     right: 80,
-    height: 20,
     top: 10,
     borderRadius: 10,
     padding: 3,
@@ -197,5 +217,5 @@ const styles = StyleSheet.create({
   subTextheader: {
     marginTop: 10,
   },
-})
-export default HomeScreen
+});
+export default HomeScreen;

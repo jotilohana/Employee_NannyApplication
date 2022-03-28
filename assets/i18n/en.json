@@ -41,9 +41,8 @@
       "Enter Password":"Enter Password",
       "Forgot your password":"Forgot your password",
       "Login":"Login",
-      "Or":"OR",
-      "Don't have an account":"Don't have an account?",
-      "Register":"Register",
+
+     
       "Save address":"Save address",
       "Office":"Office",
       "Other":"Other",
@@ -70,7 +69,8 @@
       "Didn't receive a code?":"Didn't receive a code?",
       "Request Again":"Request Again",
       "Current Password":"Current Password",
-      "Update Password":"Update Password"
+      "Update Password":"Update Password",
+      "Latest Order":" Latest Order"
 
     }
 }

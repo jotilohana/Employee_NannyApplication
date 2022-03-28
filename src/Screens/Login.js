@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   Text,
   Image,
@@ -12,27 +12,27 @@ import {
 import SyncStorage from 'sync-storage';
 import axios from 'axios';
 import baseURL from '../common/BaseUrl';
+import '../../assets/i18n/i18n';
+import {useTranslation} from 'react-i18next';
 
-
-const Login = ({ navigation }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const Login = ({navigation}) => {
+  const {t, i18n} = useTranslation();
+  const [email, onChangeTextEmail] = useState();
+  const [password, onChangeTextPass] = useState();
 
   const onPressLogin = () => {
-
-
     const data = JSON.stringify({
-      "email": email,
-      "password": password
+      email: email,
+      password: password,
     });
 
     const config = {
       method: 'post',
       url: baseURL + '/auth/login',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      data: data
+      data: data,
     };
 
     axios(config)
@@ -40,9 +40,9 @@ const Login = ({ navigation }) => {
         // console.log(JSON.stringify(response.data));
         if (response.data.success == true) {
           SyncStorage.set('id', response.data.token);
-          console.log(response.token)
+          console.log(response.token);
 
-          navigation.navigate('Home')
+          navigation.navigate('Home');
         } else {
           alert(response.data.message);
         }
@@ -50,48 +50,50 @@ const Login = ({ navigation }) => {
       .catch(function (error) {
         console.log(error);
       });
-
-
-  }
-
-  const AlertScreen = () => {
-    Alert.alert('Hey there..!');
   };
   return (
-    <View style={ { backgroundColor: '#FAF6F5', flex: 1 } }>
-      <ScrollView showsVerticalScrollIndicator={ false }>
-        <View style={ { height: '100%', overflow: 'hidden' } }>
-          <View style={ styles.TopView }>
-            <Image style={ styles.LOGO } source={ require('../Assets/LOGO.jpg') } />
+    <View style={{backgroundColor: '#FAF6F5', flex: 1}}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={{height: '100%', overflow: 'hidden'}}>
+          <View style={styles.TopView}>
+            <Image style={styles.LOGO} source={require('../Assets/LOGO.jpg')} />
           </View>
-          <View style={ styles.BottomView }>
-            <Text style={ styles.LoginText }>Login Account</Text>
+          <View style={styles.BottomView}>
+            <Text style={styles.LoginText}>{t('Login account')}</Text>
             <TextInput
-              style={ styles.input }
-              placeholder="User Name or E-mail"
-              keyboardType={ 'email-address' }
-              placeholderTextColor="black"
-              onChange={ (e) => setEmail(e) }
+              style={styles.input}
+              placeholder={t('Enter username or email')}
+              autoCapitalize="none"
+              autoCorrect={false}
+              returnKeyType="next"
+              underlineColorAndroid="transparent"
+              placeholderTextColor="#999"
+              onChangeText={onChangeTextEmail}
             />
             <TextInput
-              secureTextEntry={ true }
-              style={ styles.input }
-              placeholder="Password"
-              keyboardType={ 'password' }
-              placeholderTextColor="black"
-              onChange={ (e) => setPassword(e) }
+              secureTextEntry={true}
+              style={styles.input}
+              maxLength={40}
+              placeholder={t('Enter Password')}
+              autoCapitalize="none"
+              autoCorrect={false}
+              returnKeyType="done"
+              blurOnSubmit
+              underlineColorAndroid="transparent"
+              placeholderTextColor="#999"
+              onChangeText={onChangeTextPass}
+            />
 
-            />
-            <Text style={ styles.forgotPass }>
+            <Text style={styles.forgotPass}>
               <TouchableOpacity
-                onPress={ () => navigation.navigate('Forgot Password') }>
-                <Text style={ { color: 'black' } }>Forgot Password?</Text>
+                onPress={() => navigation.navigate('Forgot Password')}>
+                <Text style={{color: 'black'}}>
+                  {t('Forgot your password')}
+                </Text>
               </TouchableOpacity>
             </Text>
-            <TouchableOpacity
-              onPress={ () => navigation.navigate('Home') }
-              style={ styles.button }>
-              <Text style={ styles.buttonText }>Log In</Text>
+            <TouchableOpacity onPress={onPressLogin} style={styles.button}>
+              <Text style={styles.buttonText}>{t('Login')}</Text>
             </TouchableOpacity>
           </View>
         </View>
