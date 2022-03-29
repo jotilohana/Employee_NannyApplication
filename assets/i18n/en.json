@@ -1,5 +1,8 @@
 {
     "translation": {
+
+      "Home":"Home",
+
       "Services":"Services",
       "View All":"View All",
 
@@ -39,7 +42,7 @@
       "Login account":"Login account",
       "Enter username or email":"Enter Username or Email",
       "Enter Password":"Enter Password",
-      "Forgot your password":"Forgot your password",
+      "Forgot your password":"Forgot your password?",
       "Login":"Login",
 
      
@@ -70,7 +73,25 @@
       "Request Again":"Request Again",
       "Current Password":"Current Password",
       "Update Password":"Update Password",
-      "Latest Order":" Latest Order"
+      "Latest Order":" Latest Order",
+      
+      "Verify":"Verify",
+      "Service Details":"Service Details",
+      "Order List":"Order List",
+      "Details":"Details",
+      "Profile":"Profile",
+      "Edit_Profile":"Edit Profile",
+      "Thankyou":"Thankyou",
+      "Map":"Map",
+      "Add Address":"Add Address",
+      "Time":"Time",
+      "Account":"Account",
+      "Jobs":"Jobs",
+      "Forgot Password":"Forgot Password",
+      "Email":"Email",
+      "Town":"Town",
+      "Gender":"Gender",
+      "Logout":"Logout"
 
-    }
+  }
 }

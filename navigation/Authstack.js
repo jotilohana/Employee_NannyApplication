@@ -26,48 +26,64 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 import DrawerContent from '../src/components/DrawerContent';
+import '../assets/i18n/i18n';
+import {useTranslation} from 'react-i18next';
+import {t} from 'i18next';
 
 const HomeStack = createStackNavigator();
 const HomeStackScreen = ({navigation, route}) => {
-  const tabHiddenRoutes = ['Login', 'Chat', 'ChatScreen', 'Map'];
+  const tabHiddenRoutes = [
+    'Chat',
+    'ChatScreen',
+    'Map',
+    'Forgot Password',
+    'Verify',
+    'Login',
+  ];
 
   if (tabHiddenRoutes.includes(getFocusedRouteNameFromRoute(route))) {
     navigation.setOptions({tabBarStyle: {display: 'none'}});
   } else {
     navigation.setOptions({tabBarStyle: {display: 'flex'}});
   }
+  const {t, i18n} = useTranslation();
+
   return (
-    <HomeStack.Navigator>
+    <HomeStack.Navigator initialRouteName={Login}>
       <HomeStack.Screen
-        options={{headerTitleAlign: 'center'}}
+        options={{
+          headerTitleAlign: 'center',
+          title: t('Login'),
+          drawerLockMode: 'locked-closed',
+        }}
         name="Login"
         component={Login}
       />
       <HomeStack.Screen
-        options={{headerTitleAlign: 'center'}}
+        options={{headerTitleAlign: 'center', title: t('Home')}}
         name="Home"
         component={HomeScreen}
       />
       <HomeStack.Screen
-        options={{headerTitleAlign: 'center'}}
+        options={{headerTitleAlign: 'center', title: t('Forgot Password')}}
         name="Forgot Password"
         component={ForgotPass}
       />
 
       <HomeStack.Screen
-        options={{headerTitleAlign: 'center'}}
+        options={{headerTitleAlign: 'center', title: t('Verify')}}
         name="Verify"
         component={Verify}
       />
 
       <HomeStack.Screen
-        options={{headerTitleAlign: 'center'}}
+        options={{headerTitleAlign: 'center', title: t('Change Password')}}
         name="Change Password"
         component={ChangePass}
       />
 
       <HomeStack.Screen
-        options={{headerTitleAlign: 'center'}}
+        options={{headerTitleAlign: 'center', title: t('Service')}}
         name="Service"
         component={Service}
       />
@@ -79,7 +95,7 @@ const HomeStackScreen = ({navigation, route}) => {
       />
 
       <HomeStack.Screen
-        options={{headerTitleAlign: 'center'}}
+        options={{headerTitleAlign: 'center', title: t('Service Details')}}
         name="Service Details"
         component={ServiceDetails}
       />
@@ -91,31 +107,31 @@ const HomeStackScreen = ({navigation, route}) => {
       />
 
       <HomeStack.Screen
-        options={{headerTitleAlign: 'center'}}
+        options={{headerTitleAlign: 'center', title: t('Order List')}}
         name="MainService"
         component={mainScreenSS}
       />
 
       <HomeStack.Screen
-        options={{headerTitleAlign: 'center'}}
+        options={{headerTitleAlign: 'center', title: t('Details')}}
         name="Details"
         component={Details}
       />
 
       <HomeStack.Screen
-        options={{headerTitleAlign: 'center'}}
+        options={{headerTitleAlign: 'center', title: t('Profile')}}
         name="Profile"
         component={Profile}
       />
 
       <HomeStack.Screen
-        options={{headerTitleAlign: 'center'}}
+        options={{headerTitleAlign: 'center', title: t('Edit_Profile')}}
         name="Edit_Profile"
         component={EditProfile}
       />
 
       <HomeStack.Screen
-        options={{headerTitleAlign: 'center'}}
+        options={{headerTitleAlign: 'center', title: t('Update Password')}}
         name="Update Password"
         component={UpdatePass}
       />
@@ -142,19 +158,19 @@ const HomeStackScreen = ({navigation, route}) => {
       />
 
       <HomeStack.Screen
-        options={{headerTitleAlign: 'center'}}
+        options={{headerTitleAlign: 'center', title: t('Thankyou')}}
         name="Thankyou"
         component={Thankyou}
       />
 
       <HomeStack.Screen
-        options={{headerTitleAlign: 'center'}}
+        options={{headerTitleAlign: 'center', title: t('Map')}}
         name="Map"
         component={Map}
       />
 
       <HomeStack.Screen
-        options={{headerTitleAlign: 'center'}}
+        options={{headerTitleAlign: 'center', title: t('Review')}}
         name="Review"
         component={Review}
       />
@@ -164,9 +180,15 @@ const HomeStackScreen = ({navigation, route}) => {
 
 const ChatStack = createStackNavigator();
 const ChatStackScreen = () => {
+  const {t, i18n} = useTranslation();
+
   return (
     <ChatStack.Navigator>
-      <ChatStack.Screen name="Chat" component={MessagesScreen} />
+      <ChatStack.Screen
+        options={{headerTitleAlign: 'center'}}
+        name="Chat"
+        component={MessagesScreen}
+      />
       <ChatStack.Screen
         options={{
           tabBarStyle: {display: 'none'},
@@ -186,9 +208,15 @@ const ChatStackScreen = () => {
 
 const ProfileScreen = createStackNavigator();
 const ProfileStack = () => {
+  const {t, i18n} = useTranslation();
+
   return (
     <ProfileScreen.Navigator>
-      <ProfileScreen.Screen name="Profile" component={Profile} />
+      <ProfileScreen.Screen
+        options={{headerTitleAlign: 'center', title: t('Profile')}}
+        name="FirstTabProfile"
+        component={Profile}
+      />
       <ProfileScreen.Screen
         options={{headerShown: 'false'}}
         name="Edit Profile"
@@ -200,6 +228,8 @@ const ProfileStack = () => {
 
 const Tabs = createBottomTabNavigator();
 const TabsScreen = () => {
+  const {t, i18n} = useTranslation();
+
   return (
     <Tabs.Navigator
       barStyle={{backgroundColor: '#0047AB'}}
@@ -211,11 +241,11 @@ const TabsScreen = () => {
         tabBarStyle: {height: 40},
       }}>
       <Tabs.Screen
-        name="Home"
+        name="TabHome"
         component={HomeStackScreen}
         options={{
           headerShown: false,
-          tabBarLabel: 'Home',
+          tabBarLabel: t('Home'),
           tabBarIcon: ({home, color, size}) => {
             const icon = home ? 'Login' : 'home';
             return <Icon name={icon} color={color} size={size} />;
@@ -241,19 +271,19 @@ const TabsScreen = () => {
         options={{
           headerShown: false,
           tabBarColor: '#00A36C',
-          tabBarLabel: 'Jobs',
+          tabBarLabel: t('Jobs'),
           tabBarIcon: ({color}) => (
             <Icon name="add-circle" color={color} size={24} />
           ),
         }}
       />
       <Tabs.Screen
-        name="Profile"
+        name="TabProfile"
         component={ProfileStack}
         options={{
           headerShown: false,
           tabBarColor: '#00A36C',
-          tabBarLabel: 'Account',
+          tabBarLabel: t('Account'),
           tabBarIcon: ({color}) => (
             <Icon name="people" color={color} size={24} />
           ),
@@ -266,35 +296,14 @@ const TabsScreen = () => {
 const Drawer = createDrawerNavigator();
 const AuthStack = () => (
   <Drawer.Navigator
-    initialRouteName="Home"
+    initialRouteName="TabHome"
     screenOptions={{
-      // drawerActiveBackgroundColor:'#03204c',
       headerShown: false,
     }}
     drawerContent={props => <DrawerContent {...props} />}>
     <Drawer.Screen
       options={{headerShown: false}}
-      name="Home"
-      component={TabsScreen}
-    />
-    <Drawer.Screen
-      options={{headerShown: false}}
-      name="Account"
-      component={TabsScreen}
-    />
-    <Drawer.Screen
-      options={{headerShown: false}}
-      name="Jobs"
-      component={TabsScreen}
-    />
-    <Drawer.Screen
-      options={{headerShown: false}}
-      name="Chats"
-      component={TabsScreen}
-    />
-    <Drawer.Screen
-      options={{headerShown: false}}
-      name="Logout"
+      name={t('Home')}
       component={TabsScreen}
     />
   </Drawer.Navigator>

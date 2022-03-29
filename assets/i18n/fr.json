@@ -1,5 +1,6 @@
 {
     "translation": {
+      "Home":"Accueil",
      
       "Services":"Prestations de service",
       "View All":"Voir tout",
@@ -66,6 +67,24 @@
       "Request Again":"Demander à nouveau",
       "Current Password":"Mot de passe actuel",
       "Update Password":"Mettre à jour le mot de passe",
-      "Latest Order":"Dernière commande"
+      "Latest Order":"Dernière commande",
+
+      "Verify":"Vérifier",
+      "Service Details":"Détails des services",
+      "Order List":"Liste de commandes",
+      "Details":"Des détails",
+      "Profile":"Profil",
+      "Edit_Profile":"Editer le profil",
+      "Thankyou":"Merci",
+      "Map":"Carte",
+      "Add Address":"Ajoutez l'adresse",
+      "Time":"Temps",
+      "Account":"Compte",
+      "Jobs":"Travaux",
+      "Forgot Password":"Mot de passe oublié",
+      "Email":"E-mail",
+      "Town":"ville",
+      "Gender":"Le Sexe",
+      "Logout":"Se déconnecter"
     }
 }

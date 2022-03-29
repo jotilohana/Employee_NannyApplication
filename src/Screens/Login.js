@@ -41,7 +41,6 @@ const Login = ({navigation}) => {
         if (response.data.success == true) {
           SyncStorage.set('id', response.data.token);
           console.log(response.token);
-
           navigation.navigate('Home');
         } else {
           alert(response.data.message);
@@ -87,9 +86,7 @@ const Login = ({navigation}) => {
             <Text style={styles.forgotPass}>
               <TouchableOpacity
                 onPress={() => navigation.navigate('Forgot Password')}>
-                <Text style={{color: 'black'}}>
-                  {t('Forgot your password')}
-                </Text>
+                <Text style={{color: 'black'}}>{t('Forgot Password')}</Text>
               </TouchableOpacity>
             </Text>
             <TouchableOpacity onPress={onPressLogin} style={styles.button}>

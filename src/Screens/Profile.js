@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -13,7 +13,6 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-
 import SyncStorage from 'sync-storage';
 import '../../assets/i18n/i18n';
 import {useTranslation} from 'react-i18next';
@@ -40,7 +39,6 @@ const Profile = ({navigation}) => {
         console.log(err);
       });
   }, []);
-
   // console.log(post);
 
   // return false;
@@ -65,8 +63,8 @@ const Profile = ({navigation}) => {
               source={require('../Assets/User.png')}
             />
             <View style={styles.inputTextView}>
+              <Text style={styles.inputText}>{t('Full name')}</Text>
               <Text style={styles.input}>{post.name}</Text>
-              <Text style={styles.inputText}>{t('Full Name')}</Text>
             </View>
           </View>
 
@@ -76,8 +74,8 @@ const Profile = ({navigation}) => {
               source={require('../Assets/Email.png')}
             />
             <View style={styles.inputTextView}>
-              <Text style={styles.input}>{post.email}</Text>
               <Text style={styles.inputText}>{t('Email')}</Text>
+              <Text style={styles.input}>{post.email}</Text>
             </View>
           </View>
 
@@ -87,8 +85,8 @@ const Profile = ({navigation}) => {
               source={require('../Assets/Call.png')}
             />
             <View style={styles.inputTextView}>
-              <Text style={styles.input}>{post.phone}</Text>
               <Text style={styles.inputText}>{t('Phone number')}</Text>
+              <Text style={styles.input}>{post.phone}</Text>
             </View>
           </View>
 
@@ -98,8 +96,8 @@ const Profile = ({navigation}) => {
               source={require('../Assets/Address.png')}
             />
             <View style={styles.inputTextView}>
-              <Text style={styles.input}>{post.phone}</Text>
               <Text style={styles.inputText}>{t('Address')}</Text>
+              <Text style={styles.input}>{post.phone}</Text>
             </View>
           </View>
 
@@ -109,8 +107,8 @@ const Profile = ({navigation}) => {
               source={require('../Assets/City.png')}
             />
             <View style={styles.inputTextView}>
-              <Text style={styles.input}>{post.city}</Text>
               <Text style={styles.inputText}>{t('Town')}</Text>
+              <Text style={styles.input}>{post.city}</Text>
             </View>
           </View>
 
@@ -120,8 +118,8 @@ const Profile = ({navigation}) => {
               source={require('../Assets/Gender.png')}
             />
             <View style={styles.inputTextView}>
-              <Text style={styles.inputText}>{post.gender}</Text>
-              <Text style={styles.input}>{t('Gender')}</Text>
+              <Text style={styles.inputText}>{t('Gender')}</Text>
+              <Text style={styles.input}>{post.gender}</Text>
             </View>
           </View>
         </View>
