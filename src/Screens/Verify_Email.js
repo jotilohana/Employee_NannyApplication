@@ -4,91 +4,149 @@ import {
   KeyboardAvoidingView,
   Image,
   TouchableOpacity,
-  ScrollView,
   View,
   StyleSheet,
   TextInput,
 } from 'react-native';
 import '../../assets/i18n/i18n';
 import {useTranslation} from 'react-i18next';
+import axios from 'axios';
+import API_URL, {imageURL} from '../common/BaseUrl';
+import syncStorage from 'sync-storage';
+
 const Verify = ({navigation}) => {
-  let textInput = useRef(null);
-  const lengthInput = 4;
-  const [internalVal, setInternalVal] = useState();
+  const firstInput = useRef();
+  const secondInput = useRef();
+  const thirdInput = useRef();
+  const fourthInput = useRef();
+  const [otp, setOtp] = useState({1: '', 2: '', 3: '', 4: ''});
 
-  const onChangeText = val => {
-    setInternalVal(val);
-  };
-
-  useEffect(() => {
-    textInput.focus();
-  }, []);
   //LANGUAGE CHANGE
   const {t, i18n} = useTranslation();
+
+  const pressOtpVerify = () => {
+    const __otp = Object.values(otp);
+    const finalOtp = __otp[0] + __otp[1] + __otp[2] + __otp[3];
+    //  console.log(finalOtp)
+
+    const email = syncStorage.get('email');
+    const data = JSON.stringify({
+      email: email,
+      otp: finalOtp,
+    });
+
+    var config = {
+      method: 'post',
+      url: API_URL + '/auth/otpverify',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        if (response.data.success === true) {
+          navigation.navigate('Change Password');
+        } else {
+          alert(response.data.message);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   return (
-    <View>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{height: '100%', overflow: 'hidden'}}>
-          <View style={styles.TopView}>
-            <Image style={styles.LOGO} source={require('../Assets/LOGO.jpg')} />
-          </View>
-          <View style={styles.BottomView}>
-            <Text style={styles.headerText}>{t('Verify Email')}</Text>
-            <KeyboardAvoidingView
-              keyboardVerticalOffset={50}
-              behavior={'padding'}>
-              <Text style={styles.LoginText}>
-                {t('Enter Code Sent on your Email')}
-              </Text>
-              <View>
+    <View style={{flex: 1, alignContent: 'center'}}>
+      <View style={styles.TopView}>
+        <Image style={styles.LOGO} source={require('../Assets/LOGO.jpg')} />
+      </View>
+      <View style={styles.BottomView}>
+        <Text style={styles.headerText}>{t('Verify Email')}</Text>
+        <KeyboardAvoidingView keyboardVerticalOffset={50} behavior={'padding'}>
+          <Text style={styles.LoginText}>
+            {t('Enter Code Sent on your Email')}
+          </Text>
+          <View>
+            <View style={styles.otpContainer}>
+              <View style={styles.otpBox}>
                 <TextInput
-                  onChangeText={onChangeText}
-                  style={styles.input}
-                  ref={input => (textInput = input)}
-                  keyboardType={'numeric'}
-                  placeholderTextColor="black"
-                  value={internalVal}
-                  maxLength={lengthInput}
+                  autoFocus={true}
+                  style={styles.otpText}
+                  keyboardType="number-pad"
+                  maxLength={1}
+                  ref={firstInput}
+                  onChangeText={text => {
+                    setOtp({...otp, 1: text});
+                    text && secondInput.current.focus();
+                  }}
                 />
-                <View style={styles.containerInput}>
-                  {Array(lengthInput)
-                    .fill()
-                    .map((data, index) => (
-                      <View key={index} style={styles.cellView}>
-                        <Text
-                          style={styles.cellText}
-                          onPress={() => textInput.focus(true)}>
-                          {internalVal && internalVal.length > 0
-                            ? internalVal[index]
-                            : ''}
-                        </Text>
-                      </View>
-                    ))}
-                </View>
-                <TouchableOpacity
-                  onPress={() => navigation.navigate('Change Password')}
-                  style={styles.button}>
-                  <Text style={styles.buttonText}>{t('Submit')}</Text>
-                </TouchableOpacity>
-
-                <View style={styles.EndView}>
-                  <Text style={styles.Endtext}>
-                    {t("Didn't receive a code?")}{' '}
-                  </Text>
-                  <TouchableOpacity onPress={() => alert('Resend')}>
-                    <Text style={styles.Endtext}>{t('Request Again')}</Text>
-                  </TouchableOpacity>
-                </View>
-
-                <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                  <Text style={styles.BackTxt}>{t('Back To Login')}</Text>
-                </TouchableOpacity>
               </View>
-            </KeyboardAvoidingView>
+              <View style={styles.otpBox}>
+                <TextInput
+                  style={styles.otpText}
+                  keyboardType="number-pad"
+                  maxLength={1}
+                  ref={secondInput}
+                  onChangeText={text => {
+                    setOtp({...otp, 2: text});
+                    text
+                      ? thirdInput.current.focus()
+                      : firstInput.current.focus();
+                  }}
+                />
+              </View>
+              <View style={styles.otpBox}>
+                <TextInput
+                  style={styles.otpText}
+                  keyboardType="number-pad"
+                  maxLength={1}
+                  ref={thirdInput}
+                  onChangeText={text => {
+                    setOtp({...otp, 3: text});
+                    text
+                      ? fourthInput.current.focus()
+                      : secondInput.current.focus();
+                  }}
+                />
+              </View>
+              <View style={styles.otpBox}>
+                <TextInput
+                  style={styles.otpText}
+                  keyboardType="number-pad"
+                  maxLength={1}
+                  ref={fourthInput}
+                  onChangeText={text => {
+                    setOtp({...otp, 4: text});
+                    !text && thirdInput.current.focus();
+                  }}
+                />
+              </View>
+            </View>
+            <TouchableOpacity
+              onPress={pressOtpVerify}
+              // onPress={() => navigation.navigate('Change Password')}
+
+              style={styles.button}>
+              <Text style={styles.buttonText}>{t('Submit')}</Text>
+            </TouchableOpacity>
+
+            <View style={styles.EndView}>
+              <Text style={styles.Endtext}>{t("Didn't receive a code?")}</Text>
+              <TouchableOpacity onPress={() => alert('Resend')}>
+                <Text style={styles.Endtext}>{t('Request Again')}</Text>
+              </TouchableOpacity>
+            </View>
+
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+              <Text style={styles.BackTxt}>{t('Back To Login')}</Text>
+            </TouchableOpacity>
           </View>
-        </View>
-      </ScrollView>
+        </KeyboardAvoidingView>
+      </View>
     </View>
+    // </ScrollView>
   );
 };
 const styles = StyleSheet.create({
@@ -97,7 +155,7 @@ const styles = StyleSheet.create({
     height: '60%',
     borderBottomLeftRadius: 50,
     borderBottomRightRadius: 50,
-    overflow: 'hidden',
+    // overflow: 'hidden',
     marginLeft: 5,
     marginRight: 5,
   },
@@ -113,15 +171,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   BottomView: {
-    bottom: '30%',
+    // bottom: '30%',
     backgroundColor: 'white',
-    height: '45%',
+    height: '55%',
     width: '80%',
     alignSelf: 'center',
     borderRadius: 25,
     padding: '10%',
     color: 'black',
-    marginBottom: '90%',
+    marginBottom: '20%',
+    marginTop: 'auto',
     overflow: 'hidden',
   },
   headerText: {
@@ -142,25 +201,6 @@ const styles = StyleSheet.create({
     height: 0,
     width: 0,
   },
-  containerInput: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  cellView: {
-    paddingVertical: 11,
-    width: 40,
-    margin: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderBottomWidth: 1.5,
-  },
-  cellText: {
-    textAlign: 'center',
-    fontSize: 16,
-    color: 'black',
-  },
 
   // LOGINBUTTON
   button: {
@@ -180,12 +220,15 @@ const styles = StyleSheet.create({
   EndView: {
     marginTop: '4%',
     flexDirection: 'row',
+    justifyContent: 'center',
+    alignContent: 'center',
+    marginLeft: 20,
+    marginRight: 20,
   },
   Endtext: {
     color: 'black',
     textAlign: 'center',
     fontSize: 13,
-    alignSelf: 'center',
   },
   //   End back txt
   BackTxt: {
@@ -193,6 +236,30 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignSelf: 'center',
     marginTop: 15,
+  },
+
+  //OTP
+  otpContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginTop: 25,
+    alignContent: 'center',
+  },
+  otpBox: {
+    border: 0,
+    borderBottomColor: 'black',
+    borderBottomWidth: 0.5,
+    margin: 3,
+    width: 50,
+  },
+  otpText: {
+    fontSize: 20,
+    padding: 0,
+    textAlign: 'center',
+    paddingHorizontal: 18,
+    paddingVertical: 10,
+    color: 'black',
   },
 });
 export default Verify;

@@ -1,3 +1,5 @@
+import '../../assets/i18n/i18n';
+import {useTranslation} from 'react-i18next';
 import React, {useState, useRef, useEffect} from 'react';
 import {
   Text,
@@ -9,10 +11,12 @@ import {
   TextInput,
   Button,
 } from 'react-native';
-import '../../assets/i18n/i18n';
-import {useTranslation} from 'react-i18next';
 
-const Login = ({navigation}) => {
+import axios from 'axios';
+import API_URL, {imageURL} from '../common/BaseUrl';
+import syncStorage from 'sync-storage';
+
+const ForgotPass = ({navigation}) => {
   const {t, i18n} = useTranslation();
 
   let textInput = useRef(null);
@@ -24,7 +28,22 @@ const Login = ({navigation}) => {
 
   const onPressContinue = () => {
     if (Email) {
-      navigation.navigate('Verify');
+      // navigation.navigate('Verify');
+
+      const config = {
+        method: 'post',
+        url: API_URL + '/auth/otpsend?email=' + Email,
+        headers: {},
+      };
+
+      axios(config)
+        .then(function (response) {
+          syncStorage.set('email', Email);
+          navigation.navigate('Verify');
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   };
   const onChangeFocus = () => {
@@ -49,7 +68,7 @@ const Login = ({navigation}) => {
             <TextInput
               ref={Input => (textInput = Input)}
               style={styles.input}
-              placeholder="Email"
+              placeholder="E-mail"
               keyboardType={'email-address'}
               placeholderTextColor="black"
               value={Email}
@@ -142,4 +161,4 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
 });
-export default Login;
+export default ForgotPass;
