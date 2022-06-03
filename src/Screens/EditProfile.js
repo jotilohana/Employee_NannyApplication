@@ -14,7 +14,6 @@ import baseUrl from '../common/BaseUrl';
 import axios from 'axios';
 import '../../assets/i18n/i18n';
 import {useTranslation} from 'react-i18next';
-import ImagePicker from 'react-native-image-crop-picker';
 
 const EditProfile = ({navigation}) => {
   const {t, i18n} = useTranslation();
@@ -59,9 +58,6 @@ const EditProfile = ({navigation}) => {
   };
 
   const [post, setPost] = useState([]);
-  const [multipleFile, setMultipleFile] = useState(
-    'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png',
-  );
 
   React.useEffect(() => {
     action
@@ -75,23 +71,15 @@ const EditProfile = ({navigation}) => {
       });
   }, []);
 
-  const pickImage = () => {
-    return ImagePicker.openPicker({
-      width: 300,
-      height: 400,
-      cropping: true,
-    }).then(image => {
-      console.log(image.path);
-      setMultipleFile(image.path);
-    });
-  };
-
   return (
     <View style={{flex: 1}}>
       <View style={styles.header}>
         <View style={styles.ImageView}>
-          <Image style={styles.profilePicture} source={{uri: multipleFile}} />
-          <TouchableOpacity style={styles.editIcon} onPress={pickImage}>
+          <Image
+            style={styles.profilePicture}
+            source={require('../Assets/profile2.jpg')}
+          />
+          <TouchableOpacity style={styles.editIcon}>
             <Image style={styles.edit} source={require('../Assets/Edit.png')} />
           </TouchableOpacity>
         </View>
@@ -105,7 +93,7 @@ const EditProfile = ({navigation}) => {
               source={require('../Assets/User.png')}
             />
             <View style={styles.inputTextView}>
-              <Text style={styles.inputText}>{t('Full name')}</Text>
+              <Text style={styles.inputText}>{t('Full Name')}</Text>
               <TextInput
                 style={styles.input}
                 onChangeText={onChangeTextN}

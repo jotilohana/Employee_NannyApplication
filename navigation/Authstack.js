@@ -236,6 +236,7 @@ const TabsScreen = () => {
       tabBarOptions={{
         activeTintColor: '#03204c',
         inactiveTintColor: 'grey',
+        keyboardHidesTabBar: true,
       }}
       screenOptions={{
         tabBarStyle: {height: 40},
