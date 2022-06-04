@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../src/Screens/HomeScreen';
 import Login from '../src/Screens/Login';
@@ -32,6 +32,7 @@ import {t} from 'i18next';
 
 const HomeStack = createStackNavigator();
 const HomeStackScreen = ({navigation, route}) => {
+  console.log(route);
   const tabHiddenRoutes = [
     'Chat',
     'ChatScreen',
@@ -40,14 +41,24 @@ const HomeStackScreen = ({navigation, route}) => {
     'Verify',
     'Login',
   ];
-
-  if (tabHiddenRoutes.includes(getFocusedRouteNameFromRoute(route))) {
-    navigation.setOptions({tabBarStyle: {display: 'none'}});
+  if (
+    tabHiddenRoutes.includes(
+      getFocusedRouteNameFromRoute(route) && tabHiddenRoutes?.includes('Login'),
+    )
+  ) {
+    navigation.setOptions({
+      tabBarStyle: {display: 'none'},
+      tabBarVisible: false,
+    });
+  } else if (tabHiddenRoutes?.includes('Login')) {
+    navigation.setOptions({
+      tabBarStyle: {display: 'none'},
+      tabBarVisible: false,
+    });
   } else {
     navigation.setOptions({tabBarStyle: {display: 'flex'}});
   }
   const {t, i18n} = useTranslation();
-
   return (
     <HomeStack.Navigator initialRouteName={Login}>
       <HomeStack.Screen
